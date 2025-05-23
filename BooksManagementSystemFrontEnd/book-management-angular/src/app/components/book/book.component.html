@@ -1,0 +1,49 @@
+<div class="container mt-4" id="farea">
+  <h2 class="h2bdm">Book Details Management</h2>
+
+  <form (submit)="addBook()" class="mb-3">
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" [(ngModel)]="newBook.title" name="title" placeholder="Title" required>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" [(ngModel)]="newBook.author" name="author" placeholder="Author"
+          required>
+      </div>
+      <div class="col">
+        <input type="text" class="form-control" [(ngModel)]="newBook.isbn" name="isbn" placeholder="ISBN" required>
+      </div>
+      <div class="col">
+        <input type="date" class="form-control" [(ngModel)]="newBook.publicationDate" name="date" required>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-primary">Add Book</button>
+      </div>
+    </div>
+  </form>
+
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Publication Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.publicationDate | date }}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="deleteBook(book.id)" id="btndlt">Delete</button>
+          <button class="btn btn-warning btn-sm" (click)="updateBook(book)" id="btnedt">Edit</button>
+          <button *ngIf="editing" class="btn btn-primary" (click)="saveChanges()" id="schng">Save Changes</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
